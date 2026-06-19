@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Problem Solutions Cleaning & Junk Removal | Fort Myers, FL</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:ital,wght@1,400&display=swap" rel="stylesheet" />
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --rust:    #C0441E;   /* danger, urgency, primary action */
+    --charcoal:#1C1C1C;   /* authority, text */
+    --bone:    #F0EDE6;   /* warm neutral bg */
+    --steel:   #3B5068;   /* secondary, trust */
+    --sand:    #D4C9B0;   /* section dividers, subtle */
+    --white:   #FFFFFF;
+    --yellow:  #F5B800;   /* callout / badge */
+
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-italic: 'Barlow Semi Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bone);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 62px;
+    border-bottom: 3px solid var(--rust);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--rust); }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rust); }
+  .nav-cta {
+    background: var(--rust);
+    color: var(--white) !important;
+    padding: 8px 18px;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: #a53818; color: var(--white) !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: var(--charcoal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5vw 80px;
+    overflow: hidden;
+  }
+
+  /* Signature element: diagonal debris stripe */
+  .hero-stripe {
+    position: absolute;
+    right: -60px;
+    top: 0;
+    bottom: 0;
+    width: 52%;
+    background: linear-gradient(165deg, #2a2a2a 0%, #111 100%);
+    clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+  .hero-stripe::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 22px,
+        rgba(192,68,30,0.12) 22px,
+        rgba(192,68,30,0.12) 24px
+      );
+  }
+  .hero-stripe-label {
+    position: absolute;
+    bottom: 60px;
+    right: 48px;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Eyebrow */
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--rust);
+  }
+
+  /* Main headline */
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    line-height: 0.93;
+    text-transform: uppercase;
+    color: var(--white);
+    max-width: 680px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--rust);
+    display: block;
+  }
+
+  /* Sub */
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--sand);
+    max-width: 480px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Hero CTAs */
+  .hero-actions {
+    margin-top: 42px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+  .btn-primary {
+    background: var(--rust);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #a53818; transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid var(--sand);
+    color: var(--sand);
+    background: transparent;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 34px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+  /* Hero badge */
+  .hero-badge {
+    margin-top: 52px;
+    display: flex;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .badge-stat {
+    text-align: left;
+  }
+  .badge-stat .num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .badge-stat .lbl {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+  }
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar {
+    background: var(--rust);
+    padding: 14px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .trust-item svg { flex-shrink: 0; }
+  .trust-sep {
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+  }
+
+  /* ===== SECTION WRAPPER ===== */
+  section { padding: 90px 5vw; }
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--rust);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    max-width: 700px;
+    margin-bottom: 20px;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--rust);
+  }
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  /* ===== SERVICES GRID ===== */
+  .services-bg { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 0;
+  }
+  .service-card {
+    background: var(--charcoal);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .service-card:hover { background: #222; }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--rust);
+    transition: width 0.3s;
+  }
+  .service-card:hover::after { width: 100%; }
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--sand);
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    border: 1px solid var(--rust);
+    padding: 3px 8px;
+    border-radius: 1px;
+  }
+
+  /* ===== IAN SECTION ===== */
+  .ian-section {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+  .ian-section::before {
+    content: 'IAN';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22vw;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .ian-section .section-title { color: var(--white); }
+  .ian-section .section-label { color: var(--yellow); }
+  .ian-section .section-label::before { background: var(--yellow); }
+  .ian-section .section-body { color: var(--sand); max-width: 560px; }
+
+  .ian-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .ian-card {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--rust);
+    padding: 28px 24px;
+  }
+  .ian-card h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .ian-card p { font-size: 0.88rem; color: var(--sand); line-height: 1.6; }
+
+  .ian-callout {
+    margin-top: 48px;
+    background: var(--rust);
+    padding: 32px 36px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .ian-callout p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1.2;
+    max-width: 540px;
+  }
+
+  /* ===== PROCESS ===== */
+  .process-section { background: var(--bone); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0;
+    border: 2px solid var(--charcoal);
+    margin-top: 48px;
+  }
+  .process-step {
+    padding: 36px 28px;
+    border-right: 2px solid var(--charcoal);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .process-step h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+  .process-step p { font-size: 0.88rem; color: #666; line-height: 1.6; }
+
+  /* ===== WHO WE SERVE ===== */
+  .who-section { background: var(--white); }
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 0;
+  }
+  .who-card {
+    border: 2px solid var(--sand);
+    padding: 28px 22px;
+    border-radius: 2px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .who-card:hover {
+    border-color: var(--rust);
+    box-shadow: 4px 4px 0 var(--rust);
+  }
+  .who-card .icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+  .who-card h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .who-card p { font-size: 0.83rem; color: #666; line-height: 1.5; }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section { background: var(--charcoal); }
+  .testimonials-section .section-title { color: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .tcard {
+    background: rgba(255,255,255,0.05);
+    border-top: 3px solid var(--rust);
+    padding: 32px 28px;
+  }
+  .tcard-stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 16px; }
+  .tcard p {
+    font-size: 0.95rem;
+    color: var(--sand);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .tcard-author {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ===== CTA FOOTER ===== */
+  .cta-section {
+    background: var(--rust);
+    text-align: center;
+    padding: 100px 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(0,0,0,0.06) 20px,
+      rgba(0,0,0,0.06) 22px
+    );
+  }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 0.95;
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto 24px;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section .btn-white {
+    background: var(--white);
+    color: var(--rust);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.15s;
+  }
+  .cta-section .btn-white:hover { transform: translateY(-3px); }
+  .cta-social {
+    margin-top: 28px;
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .cta-social a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0f0f0f;
+    padding: 40px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+  .footer-brand span { color: var(--rust); }
+  .footer-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--rust); }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.06em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-stripe { display: none; }
+    .nav-links { display: none; }
+    .ian-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-step { border-right: none; border-bottom: 2px solid var(--charcoal); }
+    .process-step:last-child { border-bottom: none; }
+    .hero-badge { gap: 24px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+    .trust-bar { gap: 18px; }
+    .trust-sep { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 3rem; }
+  }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Problem <span>Solutions</span><br>Cleaning & Junk Removal</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hurricane">Storm Cleanup</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stripe">
+    <span class="hero-stripe-label">Fort Myers · SWFL · Lee County</span>
+  </div>
+
+  <div class="hero-eyebrow">Fort Myers, Florida</div>
+
+  <h1>
+    When It's
+    <em>a Mess,</em>
+    We're the
+    Answer.
+  </h1>
+
+  <p class="hero-sub">
+    Home & commercial waste removal, post-storm cleanup, construction debris hauling, and full-property junk removal — handled by a family business that shows up, works hard, and leaves your space spotless.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get a Free Quote</a>
+    <a href="https://www.facebook.com/people/Problem-Solutions-Cleaning-and-Junk-Removal-LLC" target="_blank" class="btn-outline">Find Us on Facebook</a>
+  </div>
+
+  <div class="hero-badge">
+    <div class="badge-stat">
+      <div class="num">24/7</div>
+      <div class="lbl">Available</div>
+    </div>
+    <div class="badge-stat">
+      <div class="num">100%</div>
+      <div class="lbl">Local · Family-Owned</div>
+    </div>
+    <div class="badge-stat">
+      <div class="num">SWFL</div>
+      <div class="lbl">Fort Myers & Beyond</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Fully Insured
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Same-Day Service Available
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Family-Owned & Operated
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    Residential &amp; Commercial
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+    No Hidden Fees
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Every Job. <em>Any Size.</em></h2>
+  <p class="section-body">From a single old couch to a full commercial site cleanout, we have the crew, the trucks, and the expertise to handle it — fast, professionally, and at a price that makes sense.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <span class="service-icon">🏠</span>
+      <h3>Residential Junk Removal</h3>
+      <p>Furniture, appliances, yard waste, old electronics, and household clutter — we haul it all so you don't have to lift a finger.</p>
+      <span class="service-tag">Home</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-icon">🏗️</span>
+      <h3>Construction Debris Removal</h3>
+      <p>Drywall, lumber, concrete, tile, roofing materials — we clean up after remodels, renovations, and new builds quickly and reliably.</p>
+      <span class="service-tag">Construction</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-icon">🌀</span>
+      <h3>Post-Storm Cleanup</h3>
+      <p>Hurricane Ian, Helene, Milton — Southwest Florida knows storms. We remove fallen trees, debris piles, damaged materials, and flood-ruined belongings.</p>
+      <span class="service-tag">Storm Response</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-icon">🏢</span>
+      <h3>Commercial Cleanouts</h3>
+      <p>Offices, warehouses, retail spaces, storage units — we service commercial properties on your schedule with minimal disruption to your business.</p>
+      <span class="service-tag">Commercial</span>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">🔨</span>
+      <h3>Remodel & Renovation Debris</h3>
+      <p>Kitchen and bath gut-outs, flooring tear-ups, cabinet removal — we clear the mess that contractors leave behind so your project keeps moving.</p>
+      <span class="service-tag">Remodel</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-icon">🧹</span>
+      <h3>Post-Project Site Cleanup</h3>
+      <p>Final cleaning after construction or renovation. We sweep, haul, and leave your property ready for occupancy or listing.</p>
+      <span class="service-tag">Post-Build</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-icon">🌿</span>
+      <h3>Yard & Landscaping Waste</h3>
+      <p>Tree branches, palm fronds, sod, mulch, soil — we handle green waste and yard debris removal for homes and commercial properties alike.</p>
+      <span class="service-tag">Outdoor</span>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-icon">📦</span>
+      <h3>Estate & Property Cleanouts</h3>
+      <p>Full property cleanouts for estates, foreclosures, evictions, and rentals. We work efficiently and treat every property with respect.</p>
+      <span class="service-tag">Cleanout</span>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">♻️</span>
+      <h3>Responsible Disposal</h3>
+      <p>Items that can be donated, recycled, or repurposed won't end up in a landfill. We handle disposal the right way — for your community and our environment.</p>
+      <span class="service-tag">Eco-Friendly</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- HURRICANE IAN SECTION -->
+<section class="ian-section" id="hurricane">
+  <div class="section-label reveal">Post-Hurricane Recovery</div>
+  <h2 class="section-title reveal">Fort Myers<br>Is <em>Rebuilding.</em><br>We're Here For It.</h2>
+  <p class="section-body reveal">
+    Hurricanes Ian, Helene, and Milton left Southwest Florida with years of cleanup and construction ahead. Whether you're gutting a flood-damaged home, clearing storm debris, or finishing a rebuild — Problem Solutions is your local partner through every phase.
+  </p>
+
+  <div class="ian-grid">
+    <div class="ian-card reveal">
+      <h4>Storm Debris Hauling</h4>
+      <p>Fallen trees, roof materials, broken concrete, waterlogged belongings — we clear it fast so your rebuild can begin.</p>
+    </div>
+    <div class="ian-card reveal reveal-delay-1">
+      <h4>Flood-Damaged Interior Removal</h4>
+      <p>Ruined drywall, flooring, cabinetry, insulation — full gut-out services for homes and businesses hit by storm surge or flooding.</p>
+    </div>
+    <div class="ian-card reveal reveal-delay-2">
+      <h4>Construction Site Cleanouts</h4>
+      <p>Fort Myers Beach and the surrounding area is in full build mode. We service active construction sites with reliable debris pickup schedules.</p>
+    </div>
+    <div class="ian-card reveal reveal-delay-3">
+      <h4>Lot & Land Clearing Debris</h4>
+      <p>Clearing lots for new builds or teardowns? We haul away the debris and leave a clean slate for your crew.</p>
+    </div>
+  </div>
+
+  <div class="ian-callout reveal">
+    <p>"In full build mode" — Fort Myers Beach Mayor Dan Allers. We're ready to work alongside that rebuild every single day.</p>
+    <a href="#contact" class="btn-primary" style="white-space:nowrap;">Get a Quote</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process-section" id="process">
+  <div class="section-label">Simple Process</div>
+  <h2 class="section-title">Booked, Hauled, <em>Done.</em></h2>
+  <p class="section-body">We keep it simple. No waiting, no surprises, no hassle. Here's what working with us looks like:</p>
+
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <h4>Call or Message Us</h4>
+      <p>Reach us by phone, Facebook message, or our quote form. Tell us what you have and where you are.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-num">02</div>
+      <h4>Get a Free Quote</h4>
+      <p>We give you a clear, upfront price before any work begins. No hidden fees, no bait-and-switch.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-num">03</div>
+      <h4>We Show Up On Time</h4>
+      <p>Our crew arrives when we say we will. We do the heavy lifting, loading, and hauling — you don't touch a thing.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-num">04</div>
+      <h4>Space Cleared, Problem Solved</h4>
+      <p>We leave your property clean and ready. Debris is disposed of responsibly. Job done.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="who-section">
+  <div class="section-label">Our Customers</div>
+  <h2 class="section-title">Built for <em>Everyone</em><br>Who Needs It Gone.</h2>
+  <p class="section-body">We serve the full spectrum of Fort Myers residents, contractors, and businesses.</p>
+
+  <div class="who-grid">
+    <div class="who-card reveal">
+      <span class="icon">🏡</span>
+      <h4>Homeowners</h4>
+      <p>Decluttering, remodeling, moving out, or dealing with storm damage.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-1">
+      <span class="icon">👷</span>
+      <h4>Contractors & Builders</h4>
+      <p>Keep your job site clean and your crew moving with reliable debris pickup.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-2">
+      <span class="icon">🏛️</span>
+      <h4>Property Managers</h4>
+      <p>Tenant cleanouts, common area cleanups, and ongoing junk removal partnerships.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-3">
+      <span class="icon">🏪</span>
+      <h4>Business Owners</h4>
+      <p>Office moves, retail cleanouts, warehouse clearing — scheduled around your business hours.</p>
+    </div>
+    <div class="who-card reveal">
+      <span class="icon">🏠</span>
+      <h4>Real Estate Agents</h4>
+      <p>Fast estate cleanouts and pre-listing junk removal to get properties market-ready.</p>
+    </div>
+    <div class="who-card reveal reveal-delay-1">
+      <span class="icon">🌊</span>
+      <h4>Storm Survivors</h4>
+      <p>Compassionate, professional post-storm debris removal and gutting services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-label" style="color:var(--yellow)">
+    <span style="display:inline-block;width:24px;height:2px;background:var(--yellow);"></span>
+    What People Are Saying
+  </div>
+  <h2 class="section-title" style="color:var(--white)">Real Results.<br><em>Real Neighbors.</em></h2>
+
+  <div class="testimonials-grid">
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"They came out the day after I called, cleared out my entire garage — years of junk, old furniture, everything. Fast, professional, no mess left behind. This is exactly the kind of local company Fort Myers needs."</p>
+      <div class="tcard-author">— Residential Customer, Fort Myers</div>
+    </div>
+    <div class="tcard reveal reveal-delay-1">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"We're rebuilding after Ian and needed a reliable crew to haul construction debris every week. Problem Solutions shows up on time, every time. That kind of dependability is everything when you're in the middle of a build."</p>
+      <div class="tcard-author">— General Contractor, Fort Myers Beach</div>
+    </div>
+    <div class="tcard reveal reveal-delay-2">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"Family business through and through. They treated my late mother's estate with total respect and cleared it out completely in one day. Honest pricing, kind team, and they donated what could be donated."</p>
+      <div class="tcard-author">— Estate Cleanout, Cape Coral</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="contact">
+  <h2>Ready to Clear the Problem?</h2>
+  <p>Call or message us today. Same-day service available across Fort Myers and Southwest Florida.</p>
+  <a href="tel:+1" class="btn-white">Call for a Free Quote</a>
+  <div class="cta-social">
+    Or find us on Facebook: <a href="https://www.facebook.com/people/Problem-Solutions-Cleaning-and-Junk-Removal-LLC" target="_blank">Problem Solutions Cleaning and Junk Removal LLC</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Problem <span>Solutions</span> Cleaning<br>&amp; Junk Removal LLC</div>
+    <div class="footer-sub">Fort Myers, Florida · Serving Lee County &amp; Southwest Florida</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hurricane">Storm Cleanup</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="https://www.facebook.com/people/Problem-Solutions-Cleaning-and-Junk-Removal-LLC" target="_blank">Facebook</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Problem Solutions LLC · Fort Myers, FL</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Nav active highlight on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + 80;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const bottom = top + sec.offsetHeight;
+      const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+      if (link) {
+        if (scrollY >= top && scrollY < bottom) {
+          link.style.color = 'var(--rust)';
+        } else {
+          link.style.color = '';
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
